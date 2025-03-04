@@ -3,12 +3,34 @@ import axios from "axios";
 const API = "http://localhost:3000/users";
 
 async function getData() {
-  return await axios.get(API);
+  try {
+    return await axios.get(API);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
-async function postData(obj){
-    await axios.post(API, obj)
+async function postData(obj) {
+  try {
+    await axios.post(API, obj);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export { getData, postData };
+async function deleteData(id) {
+  try {
+   await axios.delete(`${API}/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function editData(id, obj) {
+  try {
+      await axios.put(`${API}/${id}`,obj)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getData, postData, deleteData, editData };
